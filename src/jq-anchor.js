@@ -11,6 +11,28 @@ JQAnchor.prototype.run = function(){
     this._detectHashchange();
 };
 
+JQAnchor.prototype.go = function(pageName, state) {
+    var hash = '';
+    if (pageName) {
+        hash = pageName;
+    }
+    
+    var args = [];
+    for (var key in state) {
+        if (state.hasOwnProperty(key)) {
+            args.push("" + key + "=" + state[key]);
+        }
+    }
+    
+    if (args) {
+        hash = hash + '?' + args.join("&");
+    }
+    
+    if (hash) {
+        window.location.hash = hash;
+    }
+};
+
 JQAnchor.prototype._detectHashchange = function() {
     
     // Fire event on initial loading if hash is defined.
