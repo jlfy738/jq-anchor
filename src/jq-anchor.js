@@ -14,13 +14,13 @@ JQAnchor.prototype.run = function(){
 JQAnchor.prototype.go = function(pageName, state) {
     var hash = '';
     if (pageName) {
-        hash = pageName;
+        hash = encodeURIComponent(pageName);
     }
     
     var args = [];
     for (var key in state) {
         if (state.hasOwnProperty(key)) {
-            args.push("" + key + "=" + state[key]);
+            args.push(encodeURIComponent(key) + "=" + encodeURIComponent(state[key]));
         }
     }
     
