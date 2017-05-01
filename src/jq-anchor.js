@@ -39,7 +39,7 @@ JQAnchor.prototype._detectHashchange = function() {
     if (window.location.hash) {
         var obj = this._parseHash(window.location.hash);
         
-        this.observers.fire(obj.pageName, JSON.stringify(obj.args));
+        this.observers.fire(obj.pageName, obj.args);
     }
 
     var _this = this;
@@ -48,7 +48,7 @@ JQAnchor.prototype._detectHashchange = function() {
     jQuery(window).on('hashchange', function(){
         var obj = _this._parseHash(location.hash);
         
-        _this.observers.fire(obj.pageName, JSON.stringify(obj.args));
+        _this.observers.fire(obj.pageName, obj.args);
     });
 };
 
