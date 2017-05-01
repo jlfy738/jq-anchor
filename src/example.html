@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+    <title>JQ-Anchor Example</title>
+    <meta charset="UTF-8"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./jq-anchor.js"></script>
+</head>
+<body>
+    <h1>JQ-Anchor Example</h1>
+    <p>Open browser console and click on the links below to see the results...</p>
+    <ul>
+        <li><a href="#anchor1">Link : #anchor1</a></li>
+        <li><a href="#anchor2?color=green">Link : #anchor2?color=green</a></li>
+        <li><a href="#?color=blue">Link : #?color=blue</a></li>
+        <li><button id="clickme">Set manually</button></li>
+        <li><button id="clickme2">Set manually 2</button></li>
+    </ul>
+    
+    
+    <script type="text/javascript">
+    
+        var myObserver = function(pageName, state){
+            console.log('pageName:' + pageName + " - state: " + JSON.stringify(state));
+        };
+
+        var jqs = $.JQAnchor;
+        jqs.addObserver(myObserver);
+        jqs.run();
+        
+        $("#clickme").on('click', function() {
+            jqs.setHash("search?name=Marilyn&what=John");
+        });
+        
+        $("#clickme2").on('click', function() {
+            jqs.goto('search', {'name':'John', 'what':'His keys!'});
+        });
+    
+    </script>
+
+</body>
+</html>
